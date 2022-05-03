@@ -1,0 +1,13 @@
+def search(txt,pat):
+    m=len(pat)
+    n=len(txt)
+    for i in range(n-m):
+        for j in range(m):
+            if (txt[i+j]!=pat[j]):
+                break
+            j+=1
+            if (j==m):
+                print("Pattern found at index ",i)
+txt="AABAAAAABABABAAB"
+pat="AABA"
+search(txt,pat)
