@@ -1,0 +1,20 @@
+n = int(input("enter the no  of elements"))
+list = list(map(int, input("ENTER THE ELEMENTS:").strip().split()))[:n]
+def quicksort(ele):
+    if len(ele) < 1:
+        return ele
+    else:
+        low = []
+        high = []
+        pivot = ele.pop()
+    for i in ele:
+        if i < pivot:
+            low.append(i)
+        else:
+            high.append(i)
+    return quicksort(low) + [pivot] + quicksort(high)
+
+
+print("given list", list)
+print("elements after sorting")
+print(quicksort(list))
