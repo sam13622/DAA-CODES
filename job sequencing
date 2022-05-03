@@ -1,0 +1,67 @@
+def jobSequencing(list, x):
+    size = len(list)
+    for i in range(size):
+        for j in range(size - 1 - i):
+            if list[j][2] < list[j + 1][2]:
+                list[j], list[j + 1] = list[j + 1], list[j]
+    result = [False] * x
+    job = ['-1'] * x
+    for i in range(len(list)):
+        for j in range(min(x - 1, list[i][1] - 1), -1, -1):
+            if result[j] is False:
+                result[j] = True
+                job[j] = list[i][0]
+                break
+    print(job)
+list1 = []
+number = 3
+print("ENTER JOB1 DETAILS:")
+for i in range(number):
+    job1 = input()
+    list1.append(job1)
+    deadline1 = int(input())
+    list1.append(deadline1)
+    profit1 = int(input())
+    list1.append(profit1)
+    break
+
+list2 = []
+print("ENTER JOB2 DETAILS:")
+for i in range(number):
+    job2 = input()
+    list2.append(job2)
+    deadline2 = int(input())
+    list2.append(deadline2)
+    profit2 = int(input())
+    list2.append(profit2)
+    break
+
+list3 = []
+print("ENTER JOB3 DETAILS:")
+for i in range(number):
+    job3 = input()
+    list3.append(job3)
+    deadline3 = int(input())
+    list3.append(deadline3)
+    profit3 = int(input())
+    list3.append(profit3)
+    break
+
+list4 = []
+print("ENTER JOB4 DETAILS:")
+for i in range(number):
+    job4 = input()
+    list4.append(job4)
+    deadline4 = int(input())
+    list4.append(deadline4)
+    profit4 = int(input())
+    list4.append(profit4)
+    break
+
+list = [list1, list2, list3, list4]
+print(list)
+print("ENTER THE MAXIMUM DEADLINE:")
+x = int(input())
+print("SEQUENCE OF JOBS FOR WHICH WE GET MAXIMUM PROFIT:")
+jobSequencing(list, x)
+
