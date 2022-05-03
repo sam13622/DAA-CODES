@@ -1,0 +1,36 @@
+def Mergesort(list):
+    list_length = len(list)  # CALCULATING THE LENGTH OF GIVEN LIST
+    if list_length == 1:
+        return list  # IF LIST HAS ONLY ONE ELEMENT THEN RETURNING THAT ELEMENT
+    mid_point = list_length // 2  # ELSE IF LIST HAS MORE THAN ONE ELEMENT THE WE DIVIDE THE LIST INTO N/2 PARTS
+    left_partition = Mergesort(list[:mid_point])  # THE LEFT PART OF SIZE N/2
+    right_partition = Mergesort(list[mid_point:])  # THE RIGHT PART OF SIZE N/2
+    return merge(left_partition, right_partition)
+
+
+def merge(left, right):
+    output = []  # A list for storing the sorted list
+    i = j = 0  # here i,j are like pointers
+    while i < len(left) and j < len(right):  # i AND j SHOULD BE LESS THAN LEFT AND RIGHT PARTITIONS RESPECTIVELY
+        if left[i] < right[j]:  # PERFORMING THE MAIN OPERATION HERE
+            output.append(left[i])
+            i += 1
+        else:
+            output.append(right[j])
+            j += 1
+    output.extend(left[i:])
+    output.extend(right[j:])
+
+    return output
+
+
+print("ENTER the unsorted LIST:")  # TAKING A RANDOM ELEMENTS LIST FROM  USER
+input_string = input()
+unsorted_list = input_string.split()
+print("GIVEN UNSORTED LIST!!!")
+print('unsortedList: ', unsorted_list)  # PRINTING THE UNSORTED LIST
+for i in range(len(unsorted_list)):
+     unsorted_list[i] = int(unsorted_list[i])
+print("THE SORTED LIST!!!")  # PRINTING THE SORTED LIST
+sorted_list = Mergesort(unsorted_list)
+print(sorted_list)
