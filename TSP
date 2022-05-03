@@ -1,0 +1,83 @@
+INF = 9999999
+V = 5
+G = [[0, 9, 75, 0, 0],
+     [9, 0, 95, 19, 42],
+     [75, 95, 0, 51, 66],
+     [0, 19, 51, 0, 31],
+     [0, 42, 66, 31, 0]]
+print("[ TRAVELLING SALESPERSON PROBLEM USING DP ]")
+V = int(input("ENTER THE NUMBER OF CITIES THE SALESPERSON WANTS TO VISIT : "))
+st_city = int(input("ENTER THE STARTING CITY : "))
+list1 = []
+list2 = []
+list3 = []
+list4 = []
+number = 4
+print("ENTER PATH1 COSTS:")
+for i in range(number):
+    cost1 = int(input("COST1 = "))
+    list1.append(cost1)
+    cost2 = int(input("COST2 = "))
+    list1.append(cost2)
+    cost3 = int(input("COST3 = "))
+    list1.append(cost3)
+    cost4 = int(input("COST4 = "))
+    list1.append(cost4)
+    break
+print("ENTER PATH2 COSTS:")
+for i in range(number):
+    cost1 = int(input("COST1 = "))
+    list2.append(cost1)
+    cost2 = int(input("COST2 = "))
+    list2.append(cost2)
+    cost3 = int(input("COST3 = "))
+    list2.append(cost3)
+    cost4 = int(input("COST4 = "))
+    list2.append(cost4)
+    break
+print("ENTER PATH3 COSTS:")
+for i in range(number):
+    cost1 = int(input("COST1 = "))
+    list3.append(cost1)
+    cost2 = int(input("COST2 = "))
+    list3.append(cost2)
+    cost3 = int(input("COST3 = "))
+    list3.append(cost3)
+    cost4 = int(input("COST4 = "))
+    list3.append(cost4)
+    break
+print("ENTER PATH4 COSTS:")
+for i in range(number):
+    cost1 = int(input("COST1 = "))
+    list4.append(cost1)
+    cost2 = int(input("COST2 = "))
+    list4.append(cost2)
+    cost3 = int(input("COST3 = "))
+    list4.append(cost3)
+    cost4 = int(input("COST4 = "))
+    list4.append(cost4)
+    break
+list = [list1, list2, list3, list4]
+print("HERE ARE THE DIFFERNET PATHS FOR TRAVELLING : ", list)
+print("SO THIS IS THE MINIMUM COST FROM THE PATHS THE SALESPERSON TRAVELLED : ",
+      travellingSalesmanProblem(graphs_list, st_city, V))
+selected = [0, 0, 0, 0, 0]
+no_edge = 0
+selected[0] = True
+print("Edge : Weight\n")
+while no_edge < V - 1:
+    minimum = INF
+    x = 0
+    y = 0
+    for i in range(V):
+        if selected[i]:
+            for j in range(V):
+                if (not selected[j]) and G[i][j]:
+                    # not in selected and there is an edge
+                    if minimum > G[i][j]:
+                        minimum = G[i][j]
+                        x = i
+                        y = j
+    print(str(x) + "-" + str(y) + ":" + str(G[x][y]))
+    selected[y] = True
+    no_edge += 1
