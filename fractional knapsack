@@ -1,0 +1,29 @@
+def fract_Knapsack(WList, PList, C):
+    global x
+    size1 = len(WList)
+    size2 = len(PList)
+    if size1 != size2 :
+        print("INCORRECT DATA")
+    elif size1 == 0:
+        return 0
+    if size1 > 0 and size2 > 0:
+        x = -1
+        for i in range(size1):
+            if PList[i] / WList[i] > x:
+                x = PList[i] / WList[i]
+    maxVal = x * C
+    return maxVal
+
+
+print("Enter the PList :")
+input1 = input()
+PList = input1.split()
+for o in range(len(PList)):
+    PList[o] = int(PList[o])
+print("Enter the WList :")
+input2 = input()
+WList = input2.split()
+for v in range(len(WList)):
+    WList[v] = int(WList[v])
+C = int(input("Enter the maximum C :"))
+print("HERE IS THE RESULT:", fract_Knapsack(WList, PList, C))
