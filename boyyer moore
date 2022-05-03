@@ -1,0 +1,33 @@
+def badCharHeuristic(string, size):  # CREATING THE BAD-MATCH TABLE
+    badChar = [-1] * 256  # ASSIGNING THE * VALUE
+    for i in range(size):  # IMPLEMENTING THE POINTER FOR THE STRING OR TXT
+        badChar[ord(string[i])] = i # HERE ord MEANS IT ASSIGN A UNICODE FOR EVERY LETTER IN THE TXT
+    return badChar
+
+
+def search(txt, pat):  # FROM HERE THE BOYER MOORE SEARCHING TECHNIQUE STARTS
+    m = len(pat)  # CALCULATING THE LENGTH OF PATTERN
+    n = len(txt)  # CALCULATING THE LENGTH OF TEXT
+    badChar = badCharHeuristic(pat, m)
+    s = 0  # IT STORE THE AT PRESENT PARTITION STRING
+    while s <= n - m:  # OTHER THAN PARTITION STRING
+        j = m - 1  # J IS AT END POSITION OF PATTERN
+        while j >= 0 and pat[j] == txt[s + j]:  # WHEN J IS POINTING SOME CHARACTER OF PATTERN
+            j -= 1
+        if j < 0:
+            print("Pattern occur after position = ",s)
+            s += (m - badChar[ord(txt[s + m])] if s + m < n else 1)
+        else:
+            s += max(1, j - badChar[ord(txt[s + j])])
+
+
+print('ENTER THE txt string:')
+str1 = input()
+print('ENTER THE pat string:')
+pat = input()
+txt = str1
+lst = [pat]
+if len(str1) != len(pat):
+    search(txt, pat)
+else:
+    print("SOME ERROR IN THE GIVEN STRINGS OR THEY ARE MIS-MATCHING")
